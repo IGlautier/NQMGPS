@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">NQMGPS</string>
-    <string name="enter_access_name">Enter Access Name</string>
     <string name="enter_token_secret">Enter Token Secret</string>
     <string name="authorise">Authorise</string>
+    <string name="enter_token_name">Enter Token Name</string>
+    <string name="enter_asset_id">Enter Asset ID</string>
 </resources>

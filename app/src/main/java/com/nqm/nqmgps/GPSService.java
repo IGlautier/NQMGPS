@@ -28,14 +28,14 @@ public class GPSService  extends Service {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED || checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                    gps = new GPSSensor(this, intent.getStringExtra("name") + ":" + intent.getStringExtra("secret"));
+                    gps = new GPSSensor(this, intent.getStringExtra("name") + ":" + intent.getStringExtra("secret"), intent.getStringExtra("asset"));
                     locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, gps);
                 }
             }
         }
         else {
             if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                gps = new GPSSensor(this, intent.getStringExtra("name") + ":" + intent.getStringExtra("secret"));
+                gps = new GPSSensor(this, intent.getStringExtra("name") + ":" + intent.getStringExtra("secret"), intent.getStringExtra("asset"));
                 locationManager.requestLocationUpdates(
                         LocationManager.GPS_PROVIDER, 5000, 10, gps);
 

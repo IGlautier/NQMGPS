@@ -17,10 +17,13 @@ public class MainActivity extends AppCompatActivity {
         final Button button = (Button) findViewById(R.id.auth);
         final EditText tokenName   = (EditText)findViewById(R.id.name);
         final EditText tokenSecret   = (EditText)findViewById(R.id.secret);
+        final EditText assetName   = (EditText)findViewById(R.id.assetName);
 
         SharedPreferences prefs = getSharedPreferences("UserData", 0);
         String currentName = prefs.getString("tokenName","");
+        String currentAsset = prefs.getString("assetName", "");
         if(!currentName.equals("")) tokenName.setText(currentName);
+        if(!currentAsset.equals("")) assetName.setText(currentAsset);
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences prefs = getSharedPreferences("UserData", 0);
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putString("tokenName", tokenName.getText().toString());
+                editor.putString("assetName", assetName.getText().toString());
                 editor.commit();
 
                 // Start GPS service
@@ -38,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 gpsService.setClassName("com.nqm.nqmgps", "com.nqm.nqmgps.GPSService");
                 gpsService.putExtra("name", tokenName.getText().toString());
                 gpsService.putExtra("secret", tokenSecret.getText().toString());
+                gpsService.putExtra("asset", assetName.getText().toString());
                 startService(gpsService);
             }
         });

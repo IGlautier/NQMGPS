@@ -20,9 +20,9 @@ public class GPSSensor implements LocationListener {
     private List<GPSReading> gps;
     DataExporter exporter;
 
-    public GPSSensor(Context _context, String access) {
+    public GPSSensor(Context _context, String access, String asset) {
         this.context = _context;
-        this.exporter = new DataExporter(access, _context);
+        this.exporter = new DataExporter(access, _context, asset);
         exporter.getAccessToken();
         gps = new ArrayList<GPSReading>();
     }

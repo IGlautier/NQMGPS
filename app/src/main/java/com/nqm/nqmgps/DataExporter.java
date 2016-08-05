@@ -27,11 +27,13 @@ public class DataExporter {
     private double tokenBirth;
     private Context context;
     private RequestQueue queue;
+    private String asset;
 
 
-    public DataExporter(String token, Context _context) {
+    public DataExporter(String token, Context _context, String _asset) {
         this.login = token;
         this.context = _context;
+        this.asset = _asset;
         queue = Volley.newRequestQueue(context);
     }
 
@@ -93,7 +95,7 @@ public class DataExporter {
         // Request a string response from the provided URL.
         JSONObject params = new JSONObject();
         try {
-            params.put("datasetId", "B1lIfCplY");
+            params.put("datasetId", asset);
             params.put("payload", data);
         } catch (JSONException err) {
             err.printStackTrace();
