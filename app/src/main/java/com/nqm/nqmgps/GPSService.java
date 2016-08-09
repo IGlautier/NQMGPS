@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.IBinder;
+import android.widget.Toast;
 
 /**
  * Created by Ivan on 05/08/2016.
@@ -31,6 +32,9 @@ public class GPSService  extends Service {
                     gps = new GPSSensor(this, intent.getStringExtra("name") + ":" + intent.getStringExtra("secret"), intent.getStringExtra("asset"));
                     locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, gps);
                 }
+                else {
+                    Toast.makeText(this, "Please enable GPS", Toast.LENGTH_SHORT).show();
+                }
             }
         }
         else {
@@ -40,8 +44,11 @@ public class GPSService  extends Service {
                         LocationManager.GPS_PROVIDER, 5000, 10, gps);
 
             }
+            else {
+                Toast.makeText(this, "Please enable GPS", Toast.LENGTH_SHORT).show();
+            }
         }
-        return START_STICKY;
+        return START_NOT_STICKY;
     }
 
     @Override
